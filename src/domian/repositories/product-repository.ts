@@ -8,6 +8,7 @@ export interface IProductRepository {
   getById: (id: string) => Promise<IProductResponse>
   getProductsByCategoryId: (id: string) => Promise<IProductResponse>
   delete: (id: string) => Promise<IProductResponse>
+  updateProductByQuantity: (id: string,quantity : number) => Promise<IProductResponse>
   update: (id: string, body: ProductModel) => Promise<IProductResponse>
   count: (value?: any) => Promise<IProductResponse>
   select: (value?: any) => Promise<IProductResponse>

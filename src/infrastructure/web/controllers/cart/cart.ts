@@ -26,16 +26,14 @@ export class GetCartUserController implements Controller {
     async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
       try {
         const user_id = httpRequest.params.user_id
-        console.log(user_id);
         
         const cartDb: any = await this.iCartRepository.getCartByUserId(user_id)
-        console.log(cartDb);
         
         if(!cartDb) return noContent()
         const DTOCart= await this.iCart.get(cartDb)
         return success(DTOCart)
       } catch (error) {
-          console.log(error);
+        
           
         return serverError(error)
       }
@@ -60,7 +58,6 @@ export class RemoveCartController implements Controller {
         const DTOCart = await this.iCart.remove(cartDb)
         return success(DTOCart)
       } catch (error) {
-        console.log(error)
         return serverError(error)
       }
     }
@@ -94,9 +91,7 @@ export class RemoveCartProductController implements Controller {
             if (!cartDb) return badRequest(new InvalidParamError(`Carrito no existe.😲`))
             const DTOCart = await this.iCartRepository.removeProduct(cartDb._id, product_id);
             return success(DTOCart)
-        } catch (error) {
-            console.log(error);
-            
+        } catch (error) {     
             return serverError(error)
         }
     }

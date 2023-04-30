@@ -29,6 +29,45 @@ import ItemSchema from "../../persistence/mongo/item-schema"
 const props = 'id name description price offer_price details slug text_offer n_sales n_points activated created_at activated_at sku quantity image id_category gallery'
 
 export class ProductMongoRepository implements IProductRepository {
+  async updateProductByQuantity (id: string, quantity: number) : Promise<IProductResponse>{
+    try {
+      const product: ProductModel | null = await ProductSchema.findById(id)
+
+      const currentQuantity: number = product.quantity;
+      const currentnsales: number = product.n_sales;
+      const newQuantity: number = currentQuantity - quantity;
+      const newNSales: number = currentnsales + currentnsales;
+
+      await ProductSchema.findByIdAndUpdate(
+        id,
+        { $set: { quantity: newQuantity, n_sales :newNSales } },
+        { new: true, useFindAndModify: false }
+      );
+  
+      return {
+        id: product._id,
+        name: product.name,
+        description: product.description,
+        price: product.price,
+        offer_price: product.offer_price,
+        details: product.details,
+        slug: product.slug,
+        text_offer: product.text_offer,
+        image: product.image,
+        n_sales: product.n_sales,
+        n_points: product.n_points,
+        activated: product.activated,
+        created_at: product.created_at,
+        activated_at: product.activated_at,
+        sku: product.sku,
+        quantity: newQuantity,
+        id_category: product.id_category,
+        gallery: product.gallery
+      };
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
  async getProductsByCategoryId(id: string) : Promise<IProductResponse>{
   try {

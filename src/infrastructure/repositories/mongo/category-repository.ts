@@ -20,7 +20,7 @@ export class CategoryMongoRepository implements ICategoryRepository {
       await collection.save()
       return newCollection
     } catch (error) {
-      console.log(error)
+      return null;
     }
   }
 
@@ -34,7 +34,7 @@ export class CategoryMongoRepository implements ICategoryRepository {
        
       return collection
     } catch (error) {
-      console.log(error)
+      return null;
     }
   }
 
@@ -47,7 +47,7 @@ export class CategoryMongoRepository implements ICategoryRepository {
        }
       return category
     } catch (error) {
-      console.log(error)
+      return null;
     }
   }
 
@@ -60,7 +60,7 @@ export class CategoryMongoRepository implements ICategoryRepository {
        
       return newCollection
     } catch (error) {
-      console.log(error)
+      return null;
     }
   }
 
@@ -77,7 +77,7 @@ export class CategoryMongoRepository implements ICategoryRepository {
        }
       return category
     } catch (error) {
-      console.log(error)
+      return null;
     }
   }
 
@@ -92,7 +92,7 @@ export class CategoryMongoRepository implements ICategoryRepository {
        }
       return category
     } catch (error) {
-      console.log(error)
+      return null;
     }
   }
 
@@ -101,7 +101,7 @@ export class CategoryMongoRepository implements ICategoryRepository {
       const collection: AddCategoryModel | any = await CategorySchema.countDocuments(value)
       return collection
     } catch (error) {
-      console.log(error)
+      return null;
     }
   }
 
@@ -114,7 +114,7 @@ export class CategoryMongoRepository implements ICategoryRepository {
       return collection
 
     } catch (error) {
-      console.log(error)
+      return null;
     }
   }
 }

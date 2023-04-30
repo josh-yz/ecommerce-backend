@@ -20,7 +20,7 @@ export class AdminMongoRepository implements IAdminRepository {
       await collection.save()
       return newCollection;
     } catch (error) {
-      console.log(error)
+      return null;
     }
 
   }
@@ -29,7 +29,7 @@ export class AdminMongoRepository implements IAdminRepository {
       const collection: AddUserModel | any = await AdminSchema.find({}, props)
       return collection
     } catch (error) {
-      console.log(error)
+      return null;
     }
   }
   async getOne(email: string): Promise<AdminModel> {
@@ -38,7 +38,7 @@ export class AdminMongoRepository implements IAdminRepository {
 
       return collection
     } catch (error) {
-      console.log(error)
+      return null;
     }
   }
   async getById(id: string): Promise<AdminModel> {
@@ -49,7 +49,7 @@ export class AdminMongoRepository implements IAdminRepository {
 
       return newCollection
     } catch (error) {
-      console.log(error)
+      return null;
     }
 
   }
@@ -62,7 +62,7 @@ export class AdminMongoRepository implements IAdminRepository {
 
       return newCollection
     } catch (error) {
-      console.log(error)
+      return null;
     }
   }
 

@@ -7,20 +7,15 @@ export class MailProvider implements IMailProvider {
   private readonly transporter: Mail
   constructor () {            
     this.transporter = nodemailer.createTransport({
-      host: process.env.HOSTNAME,
+      host: process.env.MAIL_HOST,
       port: 587,
       secure: false,
       auth: {
-        user: process.env.EMAIL, // generated ethereal user
-        pass: process.env.PASS
+        user: process.env.MAIL_USER, // generated ethereal user
+        pass: process.env.MAIL_PASS
       },
-      tls: {
-        // do not fail on invalid certs
-        rejectUnauthorized: true
-      }
     })
   }
-
   async sendMail (message: IMessage): Promise<void> {
     await this.transporter.sendMail({
       to: {

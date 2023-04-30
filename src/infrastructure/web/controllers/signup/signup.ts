@@ -9,6 +9,7 @@ import { badRequest, created, notFound, serverError, success } from '../../helpe
 import { InvalidParamError, MissingParamError, ReadyExist } from '../../errors';
 import { IAdminRepository } from '../../../../domian/repositories/admin-repository';
 import { GetUsers } from '../../../../domian/use-cases/user/get-user';
+import { IMailProvider } from '../../interfaces/mail-provider';
 
 export class SignUpController implements Controller {
 
@@ -16,6 +17,7 @@ export class SignUpController implements Controller {
         private readonly emailValidator: EmailValidator,
         private readonly addUser: AddUser,
         private readonly iUserRepository: IUserRepository,
+
     ) {
         this.emailValidator = emailValidator
         this.addUser = addUser
@@ -50,6 +52,8 @@ export class SignUpController implements Controller {
                 name, last_name, age, email, password, phone_number, prefix, address, role: role || 'USER_ROLE', photo: photo || photo_default, activated: false, activated_at, created_date: new Date()
             }
             const user = await this.addUser.add(body)
+       
+
             return created(user)
 
         } catch (error) {

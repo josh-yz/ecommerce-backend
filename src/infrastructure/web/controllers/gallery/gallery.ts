@@ -167,14 +167,12 @@ export class RemoveGalleryController implements Controller {
 
       const galleryDb: any = await this.iGalleryRepository.getById(gallery_id)
 
-      console.log(galleryDb);
+
       
 
       if (!galleryDb) return badRequest(new InvalidParamError(gallery_id))
 
-      const DTOGallery = await this.iGallery.remove(galleryDb)
-      console.log(galleryDb);
-      
+      const DTOGallery = await this.iGallery.remove(galleryDb)      
       this.iFileManager.deleteFile(`/products/${galleryDb.image}`);
       return success(DTOGallery)
     } catch (error) {

@@ -20,7 +20,7 @@ export class CartMongoRepository implements ICartRepository {
             const cart = await CartSchema.findOne({ user: id })
             return cart;
         } catch (error) {
-            console.log(error)
+           return null;
         }
     }
     async removeProduct(id: string, product_id: string): Promise<ICartResponse> {
@@ -81,7 +81,7 @@ export class CartMongoRepository implements ICartRepository {
             await collection.save()
             return collection
         } catch (error) {
-            console.log(error)
+         return null
         }
     }
 
@@ -98,17 +98,15 @@ export class CartMongoRepository implements ICartRepository {
     }
     async getCartByUserId(id: string): Promise<ICartResponse> {
         try {
-            try {
                 const cart = await CartSchema.findOne({ user: id })
                     .populate('products._id', propsProduct)
 
 
                 return cart;
-            } catch (error) {
-                console.log(error)
-            }
 
         } catch (error) {
+            return null;
+
 
         }
     }
