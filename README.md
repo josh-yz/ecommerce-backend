@@ -1,6 +1,28 @@
 # [ CODERHOUSE ] PROYECTO FINAL - CURSO DE PROGRAMACIÓN BACKEND [ CLEAN ARCHITECTURE ]  
-## 👩‍💻 Profesor - [Marcos Villanueva](https://github.com/marcosvillanueva9)
-## 👩‍💻 Tutor - [Ariel Sotelo]
+## 🟢 Profesor - [Marcos Villanueva](https://github.com/marcosvillanueva9)
+## 🟢 Tutor - [Ariel Sotelo]
+
+## Build & Run
+
+
+### Instalar dependencias
+
+Desde la consola, situarse en la carpeta del proyecto y ejecutar:
+
+```js
+npm i
+```
+
+### Modos de Ejecución
+
+* Entorno de Producción
+```js
+npm run start | npm run pm2
+```
+
+* Entorno de Desarrollo
+```js
+npm run dev
 
 
 # Endpoints
