@@ -4,8 +4,8 @@ import { makeGetCartUserController, makeRegisterCartController, makeRemoveCartCo
 
 import AuthenticationToken from '../middlewares/auth-middlewares'
 export default (router: Router): void => {
-    router.post('/cart', AdaptRoute(makeRegisterCartController()))
-    router.delete('/cart/:user_id/product/:product_id',AdaptRoute(makeRemoveCartProductController()))
-    router.delete('/cart/:cart_id', AdaptRoute(makeRemoveCartController()))
-    router.get('/cart/:user_id', AdaptRoute(makeGetCartUserController()))
+    router.post('/cart', AuthenticationToken.veryfyToken, AdaptRoute(makeRegisterCartController()))
+    router.delete('/cart/:user_id/product/:product_id', AuthenticationToken.veryfyToken,AdaptRoute(makeRemoveCartProductController()))
+    router.delete('/cart/:cart_id', AuthenticationToken.veryfyToken, AdaptRoute(makeRemoveCartController()))
+    router.get('/cart/:user_id', AuthenticationToken.veryfyToken, AdaptRoute(makeGetCartUserController()))
 }

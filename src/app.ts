@@ -46,7 +46,7 @@ console.log('Base de datos  puerto 27017: \x1b[32m%s\x1b[0m', 'online')
 // │   └── mapper/
 // │       ├── UserMapper.ts
 // │       └── ProductMapper.ts
-// └── main.ts
+// 
 
 
 

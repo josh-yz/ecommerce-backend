@@ -47,7 +47,6 @@ export class DbAuth implements Authentication {
           }    
           return newUser 
        } catch (error) {
-        console.log(error)
         return error.message
        }
    }
@@ -80,7 +79,6 @@ export class DbAuth implements Authentication {
               }    
               return newAdmin 
            } catch (error) {
-            console.log(error)
             return error.message
            }
     }
