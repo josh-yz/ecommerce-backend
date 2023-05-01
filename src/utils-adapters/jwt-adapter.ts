@@ -21,7 +21,6 @@ export class JwtAdapter implements IJwt {
       }, this.seed, { expiresIn: this.expiresIn })
       return token
     } catch (error) {
-      console.log(error)
       serverError(error)
     }
   }
@@ -31,7 +30,6 @@ export class JwtAdapter implements IJwt {
       const token = await jwt.verify(value, seed)
       return token
     } catch (error) {
-      console.log(error)
       serverError(error)
     }
   }

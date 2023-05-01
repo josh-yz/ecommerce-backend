@@ -134,7 +134,6 @@ export class GetUsersController implements Controller {
             }
             return success(mergeObjects)
         } catch (error) {
-            console.log(error)
             return serverError(error)
         }
 
@@ -210,7 +209,6 @@ export class DeleteUserController implements Controller {
         const account = await this.deleteUser.delete(user_id)
         return success(account)
       } catch (error) {
-        console.log(error)
         return serverError(error)
       }
     }

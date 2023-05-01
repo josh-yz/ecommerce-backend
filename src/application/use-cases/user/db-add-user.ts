@@ -64,7 +64,7 @@ export class DbAddUser implements AddUser {
             ))
             
         } catch (error) {
-            console.log(error);
+            return null
             
             
         }

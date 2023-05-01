@@ -1,17 +1,9 @@
 import GallerySchema from "../../persistence/mongo/gallery-schema"
 import ProductSchema from "../../persistence/mongo/product-schema"
-
-
 import { IGalleryRepository } from "../../../domian/repositories/gallery-repository"
 import { ProductModel } from "../../../domian/entities/product"
 import { GalleryModel } from "../../../domian/entities/gallery"
 import { IGalleryResponse } from "../../../domian/use-cases/gallery/gallery"
-
-// import { ItemModel } from '../../../../domain/entities/item'
-// import { IItemResponse } from '../../../../domain/useCases/item/items'
-// import { IItemRepository } from '../../../../data/useCases/protocols/repositories/item-repository'
-// import { ProductModel } from '../../../../domain/entities/product'
-
 
 
 const props = 'id galleries image orden product'
@@ -34,7 +26,7 @@ export class GalleryMongoRepository implements IGalleryRepository {
 
       return collection
     } catch (error) {
-      console.log(error)
+     return null
     }
   }
 
@@ -50,7 +42,7 @@ export class GalleryMongoRepository implements IGalleryRepository {
       }
       return items
     } catch (error) {
-      console.log(error)
+      return null
     }
   }
 
@@ -60,7 +52,7 @@ export class GalleryMongoRepository implements IGalleryRepository {
 
       return collection
     } catch (error) {
-      console.log(error)
+     return null
     }
   }
 
@@ -111,7 +103,7 @@ export class GalleryMongoRepository implements IGalleryRepository {
         
         return item
     } catch (error) {
-      console.log(error)
+      return null
     }
   }
 
@@ -136,7 +128,7 @@ export class GalleryMongoRepository implements IGalleryRepository {
       return  collectionRemoveItem
       
     } catch (error) {
-      console.log(error)
+      return null
     }
   }
 
@@ -145,7 +137,7 @@ export class GalleryMongoRepository implements IGalleryRepository {
       const collection: GalleryModel | any = await GallerySchema.count(value)
       return collection
     } catch (error) {
-      console.log(error)
+      return null
     }
   }
 
@@ -154,31 +146,13 @@ export class GalleryMongoRepository implements IGalleryRepository {
       const collection: GalleryModel | any = await GallerySchema.find(value, props)
       return collection
     } catch (error) {
-      console.log(error)
+      return null
     }
   }
 
   async getGalleriesByProductId (id: string): Promise<IGalleryResponse> {
     try {
-      // const collection: ItemModel | any = await ProductSchema.findById(id, props)
-
-      // .populate({path: 'items', model: ItemSchema})
-      // const { _id, name, description, created_date, items, quantity, products, short_description, image, activated_dates } = collection
-      // const newCollection: any = { id: _id, name: name,description: description, items: items, products: products, quantity: quantity, short_description: short_description, image: image, activated_dates: activated_dates, created_date: created_date }
-      
-
-
-      // let product: any = {
-      //   Product: newCollection,
-      //   count_item: collection.items.length
-      //  }
-
-
-      const items = await GallerySchema.find({ product: id }).select('-__v').lean(); // Obtiene resultados de JavaScript simples
-    
-
-
-
+      const items = await GallerySchema.find({ product: id }).select('-__v').lean(); // Obtiene 
       const newCollection: any  = items.map(item=>{
         const {_id,description,created_at,image,order,product} = item;
         return {
@@ -191,22 +165,12 @@ export class GalleryMongoRepository implements IGalleryRepository {
         }
       });
       
-
-      // const newCollection: any = {
-      //   id:_id,
-      //   description,
-      //   created_at,
-      //   product : items.product
-      // };
-
       let product: any = {
         item: newCollection,
        }
-
-       
       return product
     } catch (error) {
-      console.log(error)
+      return null
     }
   }
 }

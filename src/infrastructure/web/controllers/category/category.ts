@@ -95,7 +95,7 @@ export class EditCategoryController implements Controller {
             const DTOCatregory = await this.iCategory.edit(id, httpRequest.body)
             return success(DTOCatregory)
         } catch (error) {
-            console.log(error)
+           
             return serverError(error)
         }
     }
@@ -126,7 +126,7 @@ export class DeleteCategoryController implements Controller {
             const DTOCatregory = await this.iCategory.delete(category_id)
             return success(DTOCatregory)
         } catch (error) {
-            console.log(error)
+           
             return serverError(error)
         }
     }

@@ -19,7 +19,7 @@ export class UserMongoRepository implements IUserRepository {
       await collection.save()
       return newCollection;
     } catch (error) {
-      console.log(error)
+      return null
     }
 
   }
@@ -28,7 +28,7 @@ export class UserMongoRepository implements IUserRepository {
       const collection: AddUserModel | any = await UserSchema.find({}, props)
       return collection
     } catch (error) {
-      console.log(error)
+      return null
     }
   }
   async getOne(email: string): Promise<UserModel> {
@@ -37,7 +37,7 @@ export class UserMongoRepository implements IUserRepository {
 
       return collection
     } catch (error) {
-      console.log(error)
+      return null
     }
   }
   async getById(id: string): Promise<UserModel> {
@@ -54,7 +54,7 @@ export class UserMongoRepository implements IUserRepository {
 
       return newCollection
     } catch (error) {
-      console.log(error)
+      return null
     }
 
   }
@@ -66,7 +66,7 @@ export class UserMongoRepository implements IUserRepository {
       const newCollection: any = { id: _id, name: name, last_name, email: email, role: role, phone_number, activated, created_date: created_date, activated_at }
       return newCollection
     } catch (error) {
-      console.log(error)
+      return null
     }
   }
   async update(id: string, body: any): Promise<UserModel> {
@@ -77,7 +77,7 @@ export class UserMongoRepository implements IUserRepository {
 
       return newCollection
     } catch (error) {
-      console.log(error)
+      return null
     }
   }
   async count(value?: any): Promise<Number> {

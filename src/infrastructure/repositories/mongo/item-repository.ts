@@ -32,7 +32,7 @@ export class ItemMongoRepository implements IItemRepository {
 
       return collection
     } catch (error) {
-      console.log(error)
+      return null
     }
   }
 
@@ -48,7 +48,7 @@ export class ItemMongoRepository implements IItemRepository {
       }
       return items
     } catch (error) {
-      console.log(error)
+      return null
     }
   }
 
@@ -58,7 +58,7 @@ export class ItemMongoRepository implements IItemRepository {
 
       return collection
     } catch (error) {
-      console.log(error)
+      return null
     }
   }
 
@@ -160,7 +160,7 @@ export class ItemMongoRepository implements IItemRepository {
         
         return item
     } catch (error) {
-      console.log(error)
+      return null
     }
   }
 
@@ -184,7 +184,7 @@ export class ItemMongoRepository implements IItemRepository {
       return  collectionRemoveItem
       
     } catch (error) {
-      console.log(error)
+      return null
     }
   }
 
@@ -193,7 +193,7 @@ export class ItemMongoRepository implements IItemRepository {
       const collection: ItemModel | any = await ItemSchema.count(value)
       return collection
     } catch (error) {
-      console.log(error)
+      return null
     }
   }
 
@@ -202,31 +202,14 @@ export class ItemMongoRepository implements IItemRepository {
       const collection: ItemModel | any = await ItemSchema.find(value, props)
       return collection
     } catch (error) {
-      console.log(error)
+      return null
     }
   }
 
   async getItemsByProductId (id: string): Promise<IItemResponse> {
     try {
-      // const collection: ItemModel | any = await ProductSchema.findById(id, props)
-
-      // .populate({path: 'items', model: ItemSchema})
-      // const { _id, name, description, created_date, items, quantity, products, short_description, image, activated_dates } = collection
-      // const newCollection: any = { id: _id, name: name,description: description, items: items, products: products, quantity: quantity, short_description: short_description, image: image, activated_dates: activated_dates, created_date: created_date }
-      
-
-
-      // let product: any = {
-      //   Product: newCollection,
-      //   count_item: collection.items.length
-      //  }
-
-
       const items = await ItemSchema.find({ product: id }).select('-__v').lean(); // Obtiene resultados de JavaScript simples
-    
-
-
-
+  
       const newCollection: any  = items.map(item=>{
         const {_id,description,created_at,product,price} = item;
         return {
@@ -238,14 +221,6 @@ export class ItemMongoRepository implements IItemRepository {
         }
       });
       
-
-      // const newCollection: any = {
-      //   id:_id,
-      //   description,
-      //   created_at,
-      //   product : items.product
-      // };
-
       let product: any = {
         item: newCollection,
        }
@@ -253,7 +228,7 @@ export class ItemMongoRepository implements IItemRepository {
        
       return product
     } catch (error) {
-      console.log(error)
+      return null
     }
   }
 }

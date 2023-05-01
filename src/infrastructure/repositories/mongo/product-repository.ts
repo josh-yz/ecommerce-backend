@@ -65,7 +65,7 @@ export class ProductMongoRepository implements IProductRepository {
         gallery: product.gallery
       };
     } catch (error) {
-      console.log(error)
+      return null
     }
   }
 
@@ -75,7 +75,7 @@ export class ProductMongoRepository implements IProductRepository {
     
     return products;
   } catch (error) {
-    console.log(error)
+    return null
   }
  }
 
@@ -83,18 +83,10 @@ export class ProductMongoRepository implements IProductRepository {
   async add(productData: ProductModel): Promise<IProductResponse> {
     try {
       const collection: ProductModel | any = await ProductSchema.create(productData)
-      //const categoryDb: any = await CategorySchema.findById(collection.category)
-
       await collection.save()
-
-      //const resultPush = await categoryDb.products.push(collection.id)
-      // console.log('send Push', resultPush);
-
-      // await categoryDb.save()
-
       return collection
     } catch (error) {
-      console.log(error)
+      return null
     }
   }
   async getAll(): Promise<IProductResponse> {
@@ -106,7 +98,7 @@ export class ProductMongoRepository implements IProductRepository {
 
       return collection
     } catch (error) {
-      console.log(error)
+      return null
     }
   }
   getOne: (email: string) => Promise<IProductResponse>;
@@ -169,7 +161,7 @@ export class ProductMongoRepository implements IProductRepository {
         
         return product
     } catch (error) {
-      console.log(error)
+      return null
     }
   }
   async delete(id: string): Promise<IProductResponse> {
@@ -178,7 +170,7 @@ export class ProductMongoRepository implements IProductRepository {
 
       return collectionRemoveProduct
     } catch (error) {
-      console.log(error)
+      return null
     }
   }
   async update (id: string, body: ProductModel): Promise<IProductResponse> {
@@ -227,7 +219,7 @@ export class ProductMongoRepository implements IProductRepository {
         
         return newCollection
     } catch (error) {
-      console.log(error)
+      return null
     }
   }
   count: (value?: any) => Promise<IProductResponse>;

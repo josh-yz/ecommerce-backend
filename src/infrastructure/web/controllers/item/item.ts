@@ -68,7 +68,6 @@ export class RegisterItemController implements Controller {
       
       return success(DTOProduct)
     } catch (error) {
-      console.log(error)
       return serverError(error)
     }
   }
@@ -91,7 +90,6 @@ export class ListItemsController implements Controller {
       
       return success(DTOItems)
     } catch (error) {
-      console.log(error)
       return serverError(error)
     }
   }
@@ -118,7 +116,6 @@ export class UpdateItemController implements Controller {
       
       return success(DTOItem)
     } catch (error) {
-      console.log(error)
       return serverError(error)
     }
   }
@@ -145,7 +142,6 @@ export class GetItemController implements Controller {
       
       return success(DTOItem)
     } catch (error) {
-      console.log(error)
       return serverError(error)
     }
   }
@@ -172,7 +168,6 @@ export class RemoveItemController implements Controller {
       
       return success(DTOItem)
     } catch (error) {
-      console.log(error)
       return serverError(error)
     }
   }
@@ -201,7 +196,6 @@ export class GetItemsProductByIdController implements Controller {
       const DTOProduct = await this.iItem.get(productReadyExist)
       return success(DTOProduct)
     } catch (error) {
-      console.log(error)
       return serverError(error)
     }
   }

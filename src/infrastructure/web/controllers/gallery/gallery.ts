@@ -57,7 +57,6 @@ export class RegisterGalleryController implements Controller {
 
       return success(DTOProduct)
     } catch (error) {
-      console.log(error)
       this.iFileManager.deleteFile(`/products/${httpRequest.file.filename}`)
       return serverError(error)
     }
@@ -83,40 +82,11 @@ export class ListGalleriesController implements Controller {
 
       return success(DTOItems)
     } catch (error) {
-      console.log(error)
       return serverError(error)
     }
   }
 }
 
-// export class UpdateItemController implements Controller {
-
-//   constructor(
-//     private readonly iGallery: IGallery,
-//     private readonly iGalleryRepository: IGalleryRepository,
-//   ) {
-//     this.iGallery = iGallery
-//     this.iGalleryRepository = iGalleryRepository
-//   }
-
-
-//   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
-//     try {
-
-//       const item_id = httpRequest.params.item_id
-//       const itemDb: any = await this.iGalleryRepository.getById(item_id)
-
-//       if (!itemDb) return badRequest(new InvalidParamError(item_id))
-
-//       const DTOItem = await this.iGallery.update(itemDb.item.id, httpRequest.body)
-
-//       return success(DTOItem)
-//     } catch (error) {
-//       console.log(error)
-//       return serverError(error)
-//     }
-//   }
-// }
 
 export class GetGalleryController implements Controller {
 
@@ -141,7 +111,6 @@ export class GetGalleryController implements Controller {
 
       return success(DTOGallery)
     } catch (error) {
-      console.log(error)
       return serverError(error)
     }
   }
@@ -176,7 +145,6 @@ export class RemoveGalleryController implements Controller {
       this.iFileManager.deleteFile(`/products/${galleryDb.image}`);
       return success(DTOGallery)
     } catch (error) {
-      console.log(error)
       return serverError(error)
     }
   }
@@ -208,7 +176,6 @@ export class GetGalleriesProductByIdController implements Controller {
       const DTOProduct = await this.iGallery.get(productReadyExist)
       return success(DTOProduct)
     } catch (error) {
-      console.log(error)
       return serverError(error)
     }
   }

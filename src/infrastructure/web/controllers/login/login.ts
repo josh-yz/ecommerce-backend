@@ -46,7 +46,6 @@ export class LoginController implements Controller {
             const userAuth = await this.authentication.auth(user.email, user.password)
             return success(userAuth)
         } catch (error) {
-            console.log(error)
             return serverError(error)
         }
     }
@@ -88,7 +87,6 @@ export class LoginAdminController implements Controller {
             const userAuth = await this.authentication.authAdmin(user.email, user.password)
             return success(userAuth)
         } catch (error) {
-            console.log(error)
             return serverError(error)
         }
 
@@ -119,7 +117,6 @@ export class GetUserController implements Controller {
         const result = await this.getUsers.get(user)
         return success(result)
       } catch (error) {
-        console.log(error)
         return serverError(error)
       }
     }

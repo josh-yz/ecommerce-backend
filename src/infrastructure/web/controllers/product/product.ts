@@ -33,7 +33,6 @@ export class ListProductsCategoryController implements Controller {
 
       return success(DTOProducts)
     } catch (error) {
-      console.log(error)
       return serverError(error)
     }
   }
@@ -51,16 +50,10 @@ export class ListProductsController implements Controller {
 
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     try {
-
       const productsDb: any = await this.iProductRepository.getAll();
-
-
       const DTOProducts = await this.iProduct.getAll(productsDb)
-
-
       return success(DTOProducts)
     } catch (error) {
-      console.log(error)
       return serverError(error)
     }
   }
@@ -145,16 +138,9 @@ export class UpdateProductController implements Controller {
       const productDb: any = await this.iProductRepository.getById(product_id)      
 
       if(!productDb) return badRequest(new InvalidParamError(product_id))
-
-
-    
       const DTOProduct = await this.iProduct.update(productDb.product.id, httpRequest.body)
-
-
-      
       return success(DTOProduct)
     } catch (error) {
-      console.log(error)
       return serverError(error)
     }
   }
@@ -223,7 +209,6 @@ export class RemoveProductController implements Controller {
       this.iFileManager.deleteFile(`/products/${image}`);
       return success(DTOProduct)
     } catch (error) {
-      console.log(error)
       return serverError(error)
     }
   }
@@ -249,7 +234,6 @@ export class GetProductController implements Controller {
       
       return success(DTOProduct)
     } catch (error) {
-      console.log(error)
       return serverError(error)
     }
   }
