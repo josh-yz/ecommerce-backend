@@ -26,9 +26,7 @@ export class GetCartUserController implements Controller {
     async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
       try {
         const user_id = httpRequest.params.user_id
-        
-        const cartDb: any = await this.iCartRepository.getCartByUserId(user_id)
-        
+        const cartDb: any = await this.iCartRepository.getCartByUserId(user_id);        
         if(!cartDb) return noContent()
         const DTOCart= await this.iCart.get(cartDb)
         return success(DTOCart)
